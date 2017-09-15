@@ -10,36 +10,49 @@ class MastermindConfigParser:
     @staticmethod
     def get_balls():
         try:
-            parser = SafeConfigParser()
-            parser.read('../config.ini')
-            balls = parser.get('default', 'balls')
+            balls = MastermindConfigParser._get_value('balls')
             return balls
 
         except Exception as e:
             _logger.info(str(e))
+            return 0
 
     @staticmethod
     def get_colors():
         try:
-            parser = SafeConfigParser()
-            parser.read('../config.ini')
-            colors = parser.get('default', 'colors')
+            colors = MastermindConfigParser._get_value('colors')
             return colors
 
         except Exception as e:
             _logger.info(str(e))
+            return []
 
     @staticmethod
     def get_attempts():
         try:
-            parser = SafeConfigParser()
-            parser.read('../config.ini')
-            attempts = parser.get('default', 'attempts')
+            attempts = MastermindConfigParser._get_value('attempts')
             return attempts
 
         except Exception as e:
             _logger.info(str(e))
+            return 0
 
+    @staticmethod
+    def _get_value(key):
+        try:
+            section = 'default'
+            parser = SafeConfigParser()
+            parser.read('../config.ini')
+
+            value = parser.get(section, key)
+            return value
+
+        except Exception as e:
+            print e
+            if e.message == 'No section: \''+section+'\'':
+                raise KeyError
+            elif e.message == 'No option \''+key+'\' in section: \''+section+'\'':
+                raise Exception
 
 
 
