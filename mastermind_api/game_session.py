@@ -1,4 +1,4 @@
-__author__ = 'roby'
+__author__ = 'RobertaBtt'
 from random import randint
 from mastermind_api import mastermind_config_parser
 

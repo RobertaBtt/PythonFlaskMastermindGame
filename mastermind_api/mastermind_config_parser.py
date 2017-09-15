@@ -1,4 +1,4 @@
-__author__ = 'roby'
+__author__ = 'RobertaBtt'
 
 from ConfigParser import SafeConfigParser
 import logging

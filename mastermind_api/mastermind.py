@@ -2,7 +2,7 @@ __author__ = 'robyb'
 
 from flask import Flask, json
 from mastermind_config_parser import MastermindConfigParser
-import game_session
+from game_sessions_proxy import GameSessionsProxy
 
 app = Flask(__name__)
 
@@ -24,9 +24,9 @@ def home():
 
 @app.route("/new/game")
 def new_game():
-    game = game_session.GameSession()
+    new_game_id = GameSessionsProxy().create_game()
 
-    dictionary_values = {'id': game.get_game_id()}
+    dictionary_values = {'id': new_game_id}
 
     response = app.response_class(
         response=json.dumps(dictionary_values),
