@@ -9,7 +9,9 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     keys = ["balls", "colors", "attempts"]
-    values = [MastermindConfigParser.get_balls(), MastermindConfigParser.get_colors(), MastermindConfigParser.get_attempts()]
+    values = [MastermindConfigParser.get_balls(),
+             MastermindConfigParser.get_colors(),
+             MastermindConfigParser.get_attempts()]
 
     zipped_values = zip(keys, values)
     dictionary_values = dict(zipped_values)

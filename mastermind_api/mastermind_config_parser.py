@@ -22,7 +22,6 @@ class MastermindConfigParser:
         try:
             colors = MastermindConfigParser._get_value('colors')
             return colors
-
         except Exception as e:
             _logger.info(str(e))
             return []
@@ -32,7 +31,6 @@ class MastermindConfigParser:
         try:
             attempts = MastermindConfigParser._get_value('attempts')
             return attempts
-
         except Exception as e:
             _logger.info(str(e))
             return 0
