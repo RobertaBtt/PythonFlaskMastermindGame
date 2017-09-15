@@ -21,6 +21,13 @@ class MastermindAPITestConfigCase(unittest.TestCase):
         balls = self.parser.get('default', 'balls')
         assert balls == '4'
 
+    def test_config_notfound(self):
+        with self.assertRaises(Exception) as context:
+            self.parser.get('default', 'notfound')
+
+        self.assertEqual("No option 'notfound' in section: 'default'", context.exception.message)
+
+
     def tearDown(self):
         pass
 
