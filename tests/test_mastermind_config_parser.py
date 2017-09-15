@@ -10,18 +10,13 @@ class TestMastermindConfigParser(unittest.TestCase):
         balls = mastermind_config_parser.MastermindConfigParser._get_value('balls')
         assert balls == "4"
 
-
     def test_get_config_colors(self):
         colors = mastermind_config_parser.MastermindConfigParser._get_value('colors')
         assert colors == "9"
 
-
     def test_get_config_attempts(self):
         attempts = mastermind_config_parser.MastermindConfigParser._get_value('attempts')
         assert attempts == "10"
-
-
-
 
     def tearDown(self):
         pass

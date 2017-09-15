@@ -33,5 +33,21 @@ class GameSession:
         self.n_attempts += self.n_attempts
 
     def verify_code(self, code_string):
+        result = {}
+        print self.randoms
+
+        ints_code = [int(x) for x in code_string.split(",")]
+        current_pos = 0
+
+        for i, (code, random) in enumerate(zip(ints_code, self.randoms)):
+            current_pos += 1
+            if code == random:
+                result[i] = ('BLACK')
+            else:
+                if code in self.randoms:
+                    result[i] = ('WHITE')
+        return result
+
+
         #OK ! Now are ready to code !
         return None

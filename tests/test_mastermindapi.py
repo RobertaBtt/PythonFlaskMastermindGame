@@ -2,6 +2,7 @@ __author__ = 'robyb'
 
 import unittest
 from mastermind_api import mastermind
+from mastermind_api import game_sessions_proxy
 import json
 
 class TestMastermindAPI(unittest.TestCase):
@@ -11,6 +12,9 @@ class TestMastermindAPI(unittest.TestCase):
         app.config['TESTING'] = True
         self.baseURL = "http://localhost:5000"
         self.client = app.test_client()
+
+        #Test the game retrieving the game with the singleton proxy
+        self.game_sessions_proxy = game_sessions_proxy.GameSessionsProxy()
 
         return app
 
@@ -34,16 +38,18 @@ class TestMastermindAPI(unittest.TestCase):
         response_new_game = self.client.get('new/game')
         game_id = json.loads(response_new_game.data)['id']
         response = self.client.get('play/'+str(game_id))
-        assert 404 == response._status_code
+        assert 301 == response._status_code
 
     def test_play_not_existing_game(self):
         response = self.client.get('play/'+str(999999))
-        assert 404 == response._status_code
+        assert 301 == response._status_code
 
     def test_play_with_code(self):
         response_new_game = self.client.get('new/game')
         game_id = json.loads(response_new_game.data)['id']
-        response = self.client.get('play/'+str(game_id)+'/3,4,3,4')
+        random = self.game_sessions_proxy.get_game_by_id(game_id).get_randoms()
+
+        response = self.client.get('play/'+str(game_id)+'/3,8,3,2')
         assert 200 == response._status_code
 
 

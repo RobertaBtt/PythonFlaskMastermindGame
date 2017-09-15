@@ -36,28 +36,38 @@ def new_game():
     )
     return response
 
+
+@app.route("/play/<gameid>/")
+def play_game_no_code(gameid, code_string=None):
+    response = app.response_class(
+            response=['please give me a code'],
+            status=400,
+            mimetype='application/json'
+        )
+    return response
+
 @app.route("/play/<gameid>/<code_string>")
 def play_game(gameid, code_string=None):
 
     game_obj = GameSessionsProxy().get_game_by_id(gameid)
 
     if game_obj != None and code_string != '':
-        game_obj.verify_code(code_string)
-
+        game_result = game_obj.verify_code(code_string)
         response = app.response_class(
-            response=['you are playing game:'+ gameid],
+            response=json.dumps(game_result),
             status=200,
             mimetype='application/json'
         )
+        print response
     elif game_obj != None and code_string == '':
         response = app.response_class(
-            response=[],
+            response=['please give me a code'],
             status=400,
             mimetype='application/json'
         )
     else:
         response = app.response_class(
-            response=[],
+            response=['game not found'],
             status=404,
             mimetype='application/json'
         )
