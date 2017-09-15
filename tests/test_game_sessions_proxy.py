@@ -8,6 +8,8 @@ class TestGameSessionsProxy(unittest.TestCase):
 
     def setUp(self):
         self.game_sessions_proxy = game_sessions_proxy.GameSessionsProxy()
+        self.game_sessions_proxy2 = game_sessions_proxy.GameSessionsProxy()
+        print "ciao"
 
     def test_create_game(self):
         new_game_id = self.game_sessions_proxy.create_game()

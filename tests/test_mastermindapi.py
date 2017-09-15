@@ -30,8 +30,17 @@ class TestMastermindAPI(unittest.TestCase):
         response = self.client.get('new/game')
         assert json.loads(response.data)['id'] != None
 
-    def test_play(self):
-        response = self.client.get('play/<gameid>')
+    def test_play_existing_game(self):
+
+        response_new_game = self.client.get('new/game')
+        game_id = json.loads(response_new_game.data)['id']
+
+        response = self.client.get('play/'+str(game_id))
+        assert 200 == response._status_code
+
+    def test_play_not_existing_game(self):
+
+        response = self.client.get('play/'+str(999999))
         assert 404 == response._status_code
 
     def tearDown(self):
