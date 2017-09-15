@@ -3,6 +3,7 @@ __author__ = 'robyb'
 from flask import Flask, json
 from mastermind_config_parser import MastermindConfigParser
 from game_sessions_proxy import GameSessionsProxy
+from game_session import  GameSession
 
 app = Flask(__name__)
 
@@ -35,13 +36,23 @@ def new_game():
     )
     return response
 
-@app.route("/play/<gameid>")
-def play_game(gameid):
+@app.route("/play/<gameid>/<code_string>")
+def play_game(gameid, code_string=None):
+
     game_obj = GameSessionsProxy().get_game_by_id(gameid)
-    if game_obj != None:
+
+    if game_obj != None and code_string != '':
+        game_obj.verify_code(code_string)
+
+        response = app.response_class(
+            response=['you are playing game:'+ gameid],
+            status=200,
+            mimetype='application/json'
+        )
+    elif game_obj != None and code_string == '':
         response = app.response_class(
             response=[],
-            status=200,
+            status=400,
             mimetype='application/json'
         )
     else:

@@ -31,3 +31,6 @@ class GameSession:
 
     def add_attempt(self):
         self.n_attempts += self.n_attempts
+
+    def verify_code(self, code_string):
+        return None
