@@ -7,7 +7,7 @@ class TestConfigParser(unittest.TestCase):
 
     def setUp(self):
         self.parser = SafeConfigParser()
-        self.parser.read('../config.ini')
+        self.parser.read('config.ini')
 
     def test_config_url(self):
         url = self.parser.get('default', 'url')

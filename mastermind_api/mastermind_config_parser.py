@@ -42,7 +42,7 @@ class MastermindConfigParser:
         try:
             section = 'default'
             parser = SafeConfigParser()
-            parser.read('../config.ini')
+            parser.read('config.ini')
 
             value = parser.get(section, key)
             return value

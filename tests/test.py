@@ -13,10 +13,10 @@ class MastermindAPITestCase(unittest.TestCase):
 
         return app
 
-
     def test_get_home(self):
-        rv = self.client.get('/')
-        assert rv.status_code == 200
+        response = self.client.get('/')
+        assert response.status_code == 200
+        assert response
 
     def tearDown(self):
         pass
