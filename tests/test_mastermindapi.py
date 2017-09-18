@@ -70,6 +70,19 @@ class TestMastermindAPI(unittest.TestCase):
         response = self.client.get('play/'+str(game_id)+'/' + equal_string + ',999')
         assert '["BLACK", "BLACK", "BLACK"]' == response.data
 
+    def test_play_with_code_same_numbers_wrong_positions(self):
+        response_new_game = self.client.get('new/game')
+        game_id = json.loads(response_new_game.data)['id']
+        random_list = [1,2,3,4]
+        self.game_sessions_proxy.get_game_by_id(game_id).randoms = random_list
+
+        random_list_reversed = reversed(random_list)
+        equal_string = ','.join(str(r) for r in random_list_reversed)
+
+        response = self.client.get('play/'+str(game_id)+'/' + equal_string)
+        assert '["WHITE", "WHITE", "WHITE", "WHITE"]' == response.data
+
+
     def tearDown(self):
         pass
 

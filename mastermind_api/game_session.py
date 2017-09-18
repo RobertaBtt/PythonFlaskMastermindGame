@@ -34,7 +34,6 @@ class GameSession:
 
     def verify_code(self, code_string):
         result = {}
-        print self.randoms
 
         ints_code = [int(x) for x in code_string.split(",")]
         current_pos = 0

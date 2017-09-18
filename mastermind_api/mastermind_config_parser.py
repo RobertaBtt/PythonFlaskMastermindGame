@@ -46,7 +46,7 @@ class MastermindConfigParser:
             return value
 
         except Exception as e:
-            print e
+
             if e.message == 'No section: \''+section+'\'':
                 raise KeyError
             elif e.message == 'No option \''+key+'\' in section: \''+section+'\'':

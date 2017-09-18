@@ -58,7 +58,7 @@ def play_game(gameid, code_string=None):
             status=200,
             mimetype='application/json'
         )
-        print response
+
     elif game_obj != None and code_string == '':
         response = app.response_class(
             response=['please give me a code'],
