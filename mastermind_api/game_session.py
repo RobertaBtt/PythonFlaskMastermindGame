@@ -45,9 +45,6 @@ class GameSession:
                 result[i] = ('BLACK')
             else:
                 if code in self.randoms:
-                    result[i] = ('WHITE')
-        return result
+                    result[code] = ('WHITE')
+        return result.values()
 
-
-        #OK ! Now are ready to code !
-        return None

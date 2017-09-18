@@ -40,7 +40,7 @@ def new_game():
 @app.route("/play/<gameid>/")
 def play_game_no_code(gameid, code_string=None):
     response = app.response_class(
-            response=['please give me a code'],
+            response=['please give me the numbers you want to play'],
             status=400,
             mimetype='application/json'
         )
@@ -73,6 +73,17 @@ def play_game(gameid, code_string=None):
         )
 
     return response
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    response = app.response_class(
+            response=['not found'],
+            status=404,
+            mimetype='application/json'
+        )
+    return response
+
 
 
 
