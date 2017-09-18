@@ -61,6 +61,15 @@ class TestMastermindAPI(unittest.TestCase):
         response = self.client.get('play/'+str(game_id)+'/' + equal_string)
         assert '["BLACK", "BLACK", "BLACK", "BLACK"]' == response.data
 
+    def test_play_with_code_all_equal_except_one(self):
+        response_new_game = self.client.get('new/game')
+        game_id = json.loads(response_new_game.data)['id']
+        random_list= self.game_sessions_proxy.get_game_by_id(game_id).get_randoms()
+        equal_string = ','.join(str(r) for r in random_list[:-1])
+
+        response = self.client.get('play/'+str(game_id)+'/' + equal_string + ',999')
+        assert '["BLACK", "BLACK", "BLACK"]' == response.data
+
     def tearDown(self):
         pass
 
