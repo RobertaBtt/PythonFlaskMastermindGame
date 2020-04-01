@@ -1,18 +1,18 @@
-__author__ = 'robyb'
+__author__ = 'RobertaBtt'
 
 from flask import Flask, json
-from mastermind_config_parser import MastermindConfigParser
-from game_sessions_proxy import GameSessionsProxy
-from game_session import  GameSession
+from . import mastermind_config_parser
+from . import game_sessions_proxy
+from . import game_session
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
     keys = ["balls", "colors", "attempts"]
-    values = [MastermindConfigParser.get_balls(),
-             MastermindConfigParser.get_colors(),
-             MastermindConfigParser.get_attempts()]
+    values = [mastermind_config_parser.get_balls(),
+             mastermind_config_parser.get_colors(),
+             mastermind_config_parser.get_attempts()]
 
     zipped_values = zip(keys, values)
     dictionary_values = dict(zipped_values)
@@ -25,7 +25,7 @@ def home():
 
 @app.route("/new/game")
 def new_game():
-    new_game_id = GameSessionsProxy().create_game()
+    new_game_id = game_sessions_proxy().create_game()
 
     dictionary_values = {'id': new_game_id}
 
@@ -49,7 +49,7 @@ def play_game_no_code(gameid, code_string=None):
 @app.route("/play/<gameid>/<code_string>")
 def play_game(gameid, code_string=None):
 
-    game_obj = GameSessionsProxy().get_game_by_id(gameid)
+    game_obj = game_sessions_proxy().get_game_by_id(gameid)
 
     if game_obj != None and code_string != '':
         game_result = game_obj.verify_code(code_string)

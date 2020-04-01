@@ -1,6 +1,7 @@
 __author__ = 'RobertaBtt'
+
 from random import randint
-from mastermind_api import mastermind_config_parser
+from . import mastermind_config_parser
 
 class GameSession:
 
@@ -21,9 +22,8 @@ class GameSession:
         balls = mastermind_config_parser.MastermindConfigParser.get_balls()
         colors = mastermind_config_parser.MastermindConfigParser.get_colors()
 
-        for x in xrange(int(balls)):
-
-            new_int_random = randint(0,int(colors))
+        for x in range(int(balls)):
+            new_int_random = randint(0, int(colors))
             self.randoms.append(new_int_random)
 
     def get_randoms(self):
@@ -46,4 +46,3 @@ class GameSession:
                 if code in self.randoms:
                     result[code] = ('WHITE')
         return result.values()
-

@@ -1,7 +1,7 @@
-__author__ = 'robyb'
+__author__ = 'RobertaBtt'
 
 import unittest
-from mastermind_api import mastermind_config_parser
+from ..mastermind_api import mastermind_config_parser
 
 
 class TestMastermindConfigParser(unittest.TestCase):

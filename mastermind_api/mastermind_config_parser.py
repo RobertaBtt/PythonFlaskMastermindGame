@@ -1,6 +1,6 @@
 __author__ = 'RobertaBtt'
 
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 import logging
 
 _logger = logging.getLogger(__name__)

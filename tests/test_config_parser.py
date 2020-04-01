@@ -1,7 +1,8 @@
-__author__ = 'robyb'
+__author__ = 'RobertaBtt'
 
 import unittest
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
+
 
 class TestConfigParser(unittest.TestCase):
 
@@ -26,7 +27,6 @@ class TestConfigParser(unittest.TestCase):
             self.parser.get('default', 'notfound')
 
         self.assertEqual("No option 'notfound' in section: 'default'", context.exception.message)
-
 
     def tearDown(self):
         pass

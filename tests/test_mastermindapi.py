@@ -1,8 +1,8 @@
-__author__ = 'robyb'
+__author__ = 'RobertaBtt'
 
 import unittest
-from mastermind_api import mastermind
-from mastermind_api import game_sessions_proxy
+from ..mastermind_api import mastermind
+from ..mastermind_api import game_sessions_proxy
 import json
 
 class TestMastermindAPI(unittest.TestCase):

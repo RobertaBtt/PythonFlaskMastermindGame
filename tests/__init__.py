@@ -1,8 +1,8 @@
-__author__ = 'robyb'
+__author__ = 'RobertaBtt'
 
-import test_config_parser
-import test_mastermind_config_parser
-import test_mastermindapi
+from . import test_config_parser
+from . import test_mastermind_config_parser
+from . import test_mastermindapi
 
 
 

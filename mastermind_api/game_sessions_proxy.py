@@ -1,28 +1,31 @@
 __author__ = 'RobertaBtt'
 
-from game_session import  GameSession
+from . import game_session
+
 
 class GameSessionsProxy():
     class __GameSessionsProxy:
         def __init__(self):
             self.game_sessions = {}
+
         def __str__(self):
             return repr(self)
+
     instance = None
+
     def __init__(self):
         if not GameSessionsProxy.instance:
             GameSessionsProxy.instance = GameSessionsProxy.__GameSessionsProxy()
 
     def __getattr__(self, name):
-        return  getattr(self.instance, name)
-
+        return getattr(self.instance, name)
 
     def create_game(self):
         """
         Create and store the new game into a dictionary
         :return:
         """
-        new_game_session = GameSession()
+        new_game_session = game_session()
         self.game_sessions[id(new_game_session)] = new_game_session
         return id(new_game_session)
 
