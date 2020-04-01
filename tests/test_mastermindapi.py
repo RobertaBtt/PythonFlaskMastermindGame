@@ -1,18 +1,19 @@
 __author__ = 'RobertaBtt'
 
 import unittest
-from ..mastermind_api import mastermind
+from ..mastermind_api import FlaskApp
 from ..mastermind_api import game_sessions_proxy
 import json
+import os
+import tempfile
 
 class TestMastermindAPI(unittest.TestCase):
 
     def setUp(self):
-        app = mastermind.app
+        app = FlaskApp.app
         app.config['TESTING'] = True
         self.baseURL = "http://localhost:5000"
         self.client = app.test_client()
-
         #Test the game retrieving the game with the singleton proxy
         self.game_sessions_proxy = game_sessions_proxy.GameSessionsProxy()
 

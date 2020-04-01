@@ -1,6 +1,6 @@
 __author__ = 'RobertaBtt'
 
-from configparser import SafeConfigParser
+import configparser
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -38,11 +38,13 @@ class MastermindConfigParser:
     @staticmethod
     def _get_value(key):
         try:
-            section = 'default'
-            parser = SafeConfigParser()
-            parser.read('config.ini')
 
-            value = parser.get(section, key)
+            section = 'default'
+            config = configparser.ConfigParser()
+            config.read('config.ini')
+
+            value = config.get('default', key)
+            # value = parser.get(section, key)
             return value
 
         except Exception as e:

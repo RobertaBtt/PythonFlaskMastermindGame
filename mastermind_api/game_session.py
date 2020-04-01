@@ -36,6 +36,7 @@ class GameSession:
         result = {}
 
         ints_code = [int(x) for x in code_string.split(",")]
+
         current_pos = 0
 
         for i, (code, random) in enumerate(zip(ints_code, self.randoms)):
@@ -45,4 +46,5 @@ class GameSession:
             else:
                 if code in self.randoms:
                     result[code] = ('WHITE')
+        print(result.values())
         return result.values()

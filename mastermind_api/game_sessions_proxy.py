@@ -25,7 +25,7 @@ class GameSessionsProxy():
         Create and store the new game into a dictionary
         :return:
         """
-        new_game_session = game_session()
+        new_game_session = game_session.GameSession()
         self.game_sessions[id(new_game_session)] = new_game_session
         return id(new_game_session)
 

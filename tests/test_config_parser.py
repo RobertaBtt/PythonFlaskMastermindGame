@@ -1,13 +1,12 @@
 __author__ = 'RobertaBtt'
 
 import unittest
-from configparser import SafeConfigParser
-
+import configparser
 
 class TestConfigParser(unittest.TestCase):
 
     def setUp(self):
-        self.parser = SafeConfigParser()
+        self.parser = configparser.ConfigParser()
         self.parser.read('config.ini')
 
     def test_config_url(self):
@@ -20,7 +19,7 @@ class TestConfigParser(unittest.TestCase):
 
     def test_config_balls(self):
         balls = self.parser.get('default', 'balls')
-        assert balls == '4'
+        assert balls == '3'
 
     def test_config_notfound(self):
         with self.assertRaises(Exception) as context:
