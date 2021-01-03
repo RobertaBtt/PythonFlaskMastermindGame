@@ -1,7 +1,7 @@
 # MastermindAPI
 Rest API that simulates the role of Masterminds codemaker.
 
-It's a small webserver done with Flesk.
+It's a small webserver done with Flask.
 
 
 
@@ -14,16 +14,16 @@ Instructions:
 ```
 mkdir MastermindAPI
 
-cd MastermindAPI
+cd PythonFlaskMastermindGame
 
-virtualenv -p /usr/bin/python2.7 MASTERMIND_ENV
+virtualenv -p /usr/bin/python2.7 .env
 
 ```
 
 Create the virtual env ONCE and use it more.
 
 ```
-source MASTERMIND_ENV/bin/activate
+source .env/bin/activate
 ```
 
 
@@ -49,7 +49,7 @@ deactivate
 
 To run the Application server:
 
-From the directory *MastermindAPI*
+From the directory *PythonFlaskMastermindGame*
 run:
 
 ```
